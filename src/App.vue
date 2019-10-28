@@ -1,28 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <Ebook></Ebook>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Ebook from './components/Ebook.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Ebook
   }
 }
+document.addEventListener('DOMContentLoaded',() => {
+  const html=document.querySelector('html');
+  let fontSize=window.innerWidth/10;
+  fontSize=fontSize>40 ? 40:fontSize;
+  html.style.fontSize=fontSize+'px'
+})
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    @import "assets/reset.scss";
+#app{
+    height: 100%;
+    overflow: hidden;
 }
 </style>
