@@ -5,6 +5,7 @@ $fontSize:37.5;
   @return ($px / $fontSize) + rem;
 }
 
+//定义混合宏 @mixin  用@include调用
 @mixin center(){
   display: flex;
   justify-content: center;
@@ -14,4 +15,114 @@ $fontSize:37.5;
 .icon{
   color: #333;
   font-size: px2rem(20);
+}
+
+// home样式
+.ebook{
+  position: relative;
+  height:100%;
+  .title-wrapper {
+      display: flex;
+      width: 100%;
+      height: px2rem(48);
+      background-color: #fff;
+      box-shadow: 0 px2rem(8) px2rem(8) rgba(0, 0, 0, 0.2);
+
+      .left {
+          flex: 0 0 px2rem(80);
+      @include center;
+      }
+
+      .right {
+          flex: 1;
+          display: flex;
+          justify-content: space-around;
+      }
+
+}
+  .read-wrapper{
+      display: flex;
+      justify-content: center;
+  }
+  .menu-wrapper{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 101;
+      width: 100%;
+      height: px2rem(48);
+      background-color: #fff;
+      display: flex;
+      cursor: pointer;
+      justify-content: space-around;
+      box-shadow: 0 px2rem(-8) px2rem(8) rgba(0,0,0,0.2);
+
+  }
+}
+
+//test scss
+@mixin border-radius($radius:5px) {
+  -webkit-border-radius:$radius;
+  border-radius:$radius;
+}
+@mixin posCenter($width,$height){
+  position: absolute;
+  width:$width;
+  height: $height;
+  top:50%;
+  left:50%;
+  margin-left: - ($width) / 2;
+  margin-top:- ($height) / 2
+}
+//当参数过多时，可以用省略号代替
+@mixin box-shadow($shadows...) {//调用：box-shadow(0 0 1px rgba(#000,.5),0 0 2px rgba(#000,.2));
+  @if length($shadows) >= 1 {
+    -webkit-box-shadow: $shadows;
+    box-shadow: $shadows;
+  } @else {
+    $shadows: 0 0 2px rgba(#000,.25);
+    -webkit-box-shadow: $shadow;
+    box-shadow: $shadow;
+  }
+}
+//占位符%placeholder
+%colr{
+  color: red;
+}
+%coly{
+  color:yellow;
+}
+.btn{
+  @extend %colr;//@extend调用占位符可以把相同的代码合并到一起
+  @extend %coly;
+}
+.block{
+  @extend %colr;
+  span{
+    @extend %coly;
+  }
+}
+// 编译出来：.btn,.block{color:red}  .btn,.block span{color:yellow}
+
+
+
+
+.box{
+  border:{
+    top: 1px solid red;
+    bottom: 1px solid yellow;
+  };
+  font: {
+    size:28px;
+  };
+  &:after{
+    content: '';
+    clear: both;
+    overflow: hidden;
+    height: 0;
+  };
+  &:hover{
+    background-color: aquamarine;
+    @include border-radius(10px);
+  }
 }

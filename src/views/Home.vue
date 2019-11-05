@@ -1,15 +1,37 @@
 <template>
-    <div class="main">
-       <div class="left">left</div>
-        <div class="right">
-            <div class="banner">banner</div>
-            <div class="right_bot">
-                rightwew
+    <div>
+         <div class="box">box</div>
+        <div class="title-wrapper">
+            <div class="left">
+              <div class="icon">back</div>
             </div>
+            <div class="right">
+                <div class="icon-wrapper">
+                    <span class="icon">car</span>
+                </div>
+                <div class="icon-wrapper">
+                    <span class="icon">person</span>
+                </div>
+                <div class="icon-wrapper">
+                    <span class="icon">more</span>
+                </div>
+            </div>
+        </div>
+        <div class="read-wrapper">
+            按钮点击次数：{{btnCount}}
         </div>
     </div>
 </template>
 <script>
+import store from '@/store'
+export default{
+    name:'home',
+    data(){
+        return {
+            btnCount:store.state.count
+        }
+    }
+}
 //    import axios from 'axios'
 
     /*
@@ -29,3 +51,6 @@
 //        }
 //    }
 </script>
+<style lang="scss">
+
+</style>

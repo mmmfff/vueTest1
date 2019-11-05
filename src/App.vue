@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-      <Ebook></Ebook>
+       <div class="ebook">
+        <router-view/>
+        <div class="menu-wrapper">
+            <router-link to="/" tag="div" class="icon-wrapper">Home</router-link>
+            <router-link to="/scss" tag="div" class="icon-wrapper">Scss</router-link>
+            <div class="icon-wrapper">linkc</div>
+            <div class="icon-wrapper">linkd</div>
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Ebook from './components/Ebook.vue'
 
 export default {
-  name: 'app',
-  components: {
-    Ebook
-  }
+  name:'App'
 }
 document.addEventListener('DOMContentLoaded',() => {
   const html=document.querySelector('html');
@@ -21,10 +25,12 @@ document.addEventListener('DOMContentLoaded',() => {
 })
 </script>
 
-<style>
-    @import "assets/reset.scss";
+<style lang="scss">
+  @import './assets/reset.scss';
+  @import './assets/global.scss';
 #app{
     height: 100%;
     overflow: hidden;
+    position: relative
 }
 </style>
